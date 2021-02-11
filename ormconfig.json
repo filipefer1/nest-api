@@ -1,0 +1,9 @@
+{
+  "useUnifiedTopology": true,
+  "type": "mongodb",
+  "host": "localhost",
+  "port": 27017,
+  "database": "nest-api",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
