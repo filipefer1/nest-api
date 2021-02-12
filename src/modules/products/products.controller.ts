@@ -15,7 +15,7 @@ export class ProductController {
   }
 
   @Get(':id')
-  async getSingleProduct(@Param('id') id: ObjectID) {
+  async getSingleProduct(@Param('id') id: string) {
     return this.productService.getSingleProduct(id);
   }
 

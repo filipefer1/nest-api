@@ -17,7 +17,7 @@ export class ProductRepository extends BaseRepository<Product> {
     return createdProduct;
   }
 
-  async getById(id: ObjectID) {
+  async getById(id: string) {
     const product = await this.findOne({
       where: {
         _id: new ObjectID(id),

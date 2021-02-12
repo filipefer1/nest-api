@@ -15,7 +15,7 @@ export class ProductService {
     return this.productRepository.createProduct(product);
   }
 
-  async getSingleProduct(id: ObjectID) {
+  async getSingleProduct(id: string) {
     return this.productRepository.getById(id);
   }
 }
