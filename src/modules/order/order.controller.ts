@@ -24,19 +24,22 @@ export class OrderController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createOrder(@Body() orderDto: OrderDto, @Headers() headers) {
-    const token = headers.authorization.split('Bearer')[1].trim();
-
-    const payload = await this.authService.decode(token);
-    console.log(payload);
-    return this.orderService.createOrder(orderDto, payload.sub);
+    const userId = await this.getPayload(headers);
+    return this.orderService.createOrder(orderDto, userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get()
   async getAllOrdered(@Headers() headers) {
+    const userId = await this.getPayload(headers);
+    return this.orderService.getAllOrdered(userId);
+  }
+
+  private async getPayload(headers): Promise<string> {
     const token = headers.authorization.split('Bearer')[1].trim();
 
     const payload = await this.authService.decode(token);
-    return this.orderService.getAllOrdered(payload.sub);
+    const userId = payload.sub;
+    return userId;
   }
 }
